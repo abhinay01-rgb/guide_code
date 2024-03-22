@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-vAsYeOJ9k/38MwC6diyGpDEjVBYfzEnLMvHJMmw92KcZQMjReL1mhslD3vsHhoOuIq9mtqKbiYw8eZ4zN0RcjA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Add your custom styles here */
+        body {
+            background: linear-gradient(to right, #00c6ff, #c0c4c2);
+            padding-bottom: 80px; /* Adjust height according to the footer */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            background: linear-gradient(to right, #000000, #000000);
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px 0;
+            background: linear-gradient(to right, #000000, #000000);
+        }
+
+        .content {
+            margin-top: 60px; /* Adjust according to the header height */
+            margin-bottom: 60px; /* Adjust according to the footer height */
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: none;
+        }
+
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="{% url 'index' %}" class="text-white mr-3"><i class="fas fa-sign-out-alt"></i>Moodbuddy</a>
+            <div>
+                {% if request.user.is_authenticated %}
+                    <p class="text-white mr-3">Welcome, {{ request.user.username }}!</p>
+                    <a href="{% url 'transcribe_audio' %}" class="text-white mr-3"><i class="fas fa-sign-out-alt"></i>Upload Audio</a>
+                    <a href="{% url 'view_transcripts' %}" class="text-white mr-3"><i class="fas fa-sign-out-alt"></i>View</a>
+                    <!-- <a href="{% url 'index' %}" class="text-white mr-3"><i class="fas fa-sign-out-alt"></i>Moodbuddy</a> -->
+                    <a href="{% url 'quiz' %}" class="text-white mr-3"><i class="fas fa-sign-out-alt"></i>Quiz</a>
+                    <a href="{% url 'logout' %}" class="text-white mr-3"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white mr-3"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="{% url 'signup' %}" class="text-white mr-3"><i class="fas fa-user-plus"></i> Signup</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <p>&copy; 2024 Moodbuddy.in. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

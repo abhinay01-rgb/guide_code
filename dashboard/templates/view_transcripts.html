@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 150px;"> <!-- Added margin-top -->
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="main-content">
+        <h1>Meeting Report</h1>
+        {% for transcript in transcripts %}
+        <div class="transcript-card" onclick="toggleDetails(this)">
+            <div class="transcript-header">{{ transcript.created_at }}</div>
+            <div class="transcript-details">
+                <div class="transcript-field">
+                    <label>Therapy Report:</label>
+                    <p>{{ transcript.therapy_report }}</p>
+                </div>
+                <div class="transcript-field">
+                    <label>Therapy Session Analysis:</label>
+                    <p>{{ transcript.therapy_session }}</p>
+                </div>
+                <div class="transcript-field">
+                    <label>Comprehensively Analysis:</label>
+                    <p>{{ transcript.comprehension_report }}</p>
+                </div>
+                <div class="transcript-field">
+                    <label>Next Session Blueprint:</label>
+                    <p>{{ transcript.next_session_blueprint }}</p>
+                </div>
+                <div class="transcript-field">
+                    <label>Goal Assigning to patient :</label>
+                    <p>{{ transcript.goal}}</p>
+                </div>
+                <div class="transcript-field">
+                    <label>Feedback:</label>
+                    <p>{{ transcript.feedback}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+    .transcript-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        background-color: #fff;
+        cursor: pointer; /* Add cursor pointer */
+    }
+
+    .transcript-card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .transcript-details {
+        display: none;
+    }
+
+    .transcript-header {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .transcript-field {
+        margin-bottom: 5px;
+    }
+
+    .transcript-field label {
+        font-weight: bold;
+    }
+
+    .transcript-field p {
+        margin: 0;
+    }
+</style>
+<script>
+    function toggleDetails(card) {
+        var details = card.querySelector('.transcript-details');
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
+{% endblock %}

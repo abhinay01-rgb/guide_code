@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="margin-top: 150px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> <!-- Adjust the column size based on your preference -->
+            <div class="card">
+                <div class="card-header">
+                    Login
+                </div>
+                <div class="card-body">
+                    <h1>Login</h1>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <a href="{% url 'signup' %}" class="btn btn-link">Don't have an account? Create one!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
